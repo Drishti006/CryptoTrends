@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+
+<div class="parent">
+    <div class="div1">
+      <nav>
+        <h2 class="logo">Crypto Trends</h2>
+      </nav>
+    </div>
+    <div class="div2">
+      <form action="/search" method="post">
+      <input type="text" class="animated-gradient-input" placeholder="Search any coin" value="" name="search">
+      <input type="submit" style="display: none;">
+      </form>
+      
+    </div>
+
+ <div class="div3">
+<!-- Final searched data will be displayed here -->
+ <% if (final!==null) {%>
+  <div class="final">
+<div class="coin-card">
+    <img src="<%= final.image.thumb %>" alt="<%= final.name %> Logo" class="coin-logo" />
+    <h2 class="coin-name"><%= final.name %> (<%= final.symbol %>)</h2>
+    <p class="coin-description"><%= final.description.en %></p>
+    <div class="coin-details">
+        <div class="detail-row">
+            <span class="detail-label">Market Cap Rank:</span>
+            <span class="detail-value"><%= final.market_cap_rank %></span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Current Price:</span>
+            <span class="detail-value">$<%= final.market_data.current_price.usd %></span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">24h Change:</span>
+            <span class="detail-value"><%= final.market_data.price_change_percentage_24h %>%</span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Total Supply:</span>
+            <span class="detail-value"><%= final.total_supply %></span>
+        </div>
+        <div class="detail-row">
+            <span class="detail-label">Circulating Supply:</span>
+            <span class="detail-value"><%= final.circulating_supply %></span>
+        </div>
+    </div>
+    <div class="coin-links">
+        <a href="<%= final.links.homepage[0] %>" target="_blank">Official Website</a>
+        <a href="<%= final.links.blockchain_site[0] %>" target="_blank">Blockchain Explorer</a>
+        <a href="<%= final.links.repos_url.github[0] %>" target="_blank">GitHub</a>
+    </div>
+</div>
+<% } %>
+</div>
+<!-- finsished here -->
+
+
+
+
+
+  
+   <% if (coin!==null) { %>
+      
+      <h2>Trending Coins</h2>
+      <div class="trendingcoins">
+  <div class="coin-card">
+    <img src="<%= coin[0].item.thumb %>" class="coin-logo">
+    <h2 class="coin-name"><%= coin[0].item.id %></h2>
+    <a href="/coin-details/<%= 0 %>">View Details</a> <!-- Using i here -->
+  </div>
+  <div class="coin-card">
+    <img src="<%= coin[1].item.thumb %>" class="coin-logo">
+    <h2 class="coin-name"><%= coin[1].item.id %></h2>
+    <a href="/coin-details/<%= 1 %>">View Details</a> <!-- Using i here -->
+  </div>
+  <div class="coin-card">
+    <img src="<%= coin[2].item.thumb %>" class="coin-logo">
+    <h2 class="coin-name"><%= coin[2].item.id %></h2>
+    <a href="/coin-details/<%= 2 %>">View Details</a> <!-- Using i here -->
+  </div>
+  <div class="coin-card">
+    <img src="<%= coin[3].item.thumb %>" class="coin-logo">
+    <h2 class="coin-name"><%= coin[3].item.id %></h2>
+    <a href="/coin-details/<%= 3 %>">View Details</a> <!-- Using i here -->
+  </div>
+
+
+    </div></div>
+
+
+
+
+<div class="div4">
+    <h2>Trending coin details</h2>
+      <% if  (important!==null) { %>
+        <div class="coin-card-details">
+        <div class="coin-header">
+            <img src="<%= important.thumb %>" 
+                 alt="AI Companions" class="coin-image">
+            <div class="coin-title">
+                <h2 class="coin-name"><%= important.id%></h2>
+                <span class="coin-symbol"><%= important.symbol%></span>
+            </div>
+            <div class="coin-rank"><%= important.rank%></div>
+        </div>
+
+        <div class="coin-details">
+            <div class="detail-row">
+                <span class="detail-label">Current Price</span>
+                <span class="detail-value price"><%= important.data.price%></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Price in BTC</span>
+                <span class="detail-value"><%= important.data.price_btc%></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Market Cap</span>
+                <span class="detail-value market-cap"><%= important.data.market_cap%></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">24h Volume</span>
+                <span class="detail-value volume"><%= important.data.total_volume%></span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">24h Change</span>
+                <span class="detail-value price-change positive">$  <%= change%></span>
+            </div>
+        </div>
+
+        <div class="coin-id">
+            <%= important.coin_id%>
+        </div>
+    </div>
+        
+    <%     } else  {%>
+      <!-- <div class="coin-card-details">
+        <div class="coin-header">
+            <img src="https://coin-images.coingecko.com/coins/images/40130/standard/AI_Companions.png?1725942702" 
+                 alt="AI Companions" class="coin-image">
+            <div class="coin-title">
+                <h2 class="coin-name">AI Companions</h2>
+                <span class="coin-symbol">AIC</span>
+            </div>
+            <div class="coin-rank">#385</div>
+        </div>
+
+        <div class="coin-details">
+            <div class="detail-row">
+                <span class="detail-label">Current Price</span>
+                <span class="detail-value price">$0.147</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Price in BTC</span>
+                <span class="detail-value">₿0.0000013</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">Market Cap</span>
+                <span class="detail-value market-cap">$146,343,112</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">24h Volume</span>
+                <span class="detail-value volume">$25,580,431</span>
+            </div>
+            
+            <div class="detail-row">
+                <span class="detail-label">24h Change</span>
+                <span class="detail-value price-change positive">+2.45%</span>
+            </div>
+        </div>
+
+        <div class="coin-id">
+            ID: ai-companions
+        </div>
+      </div> -->
+    <% } %>
+      
+</div>
+  <% } else if (coin===null){ %>
+      <% if(returndata!==null){%>
+            <% returndata.coins.forEach(coin => { %>
+  <div class="searched">
+  <div class="coin-card">
+    <img src="<%= coin.thumb %>" class="coin-logo">
+    <h2 class="coin-name"><%= coin.id %></h2>
+    <a href="/search-coin-details/<%= coin.id %>">View Details</a> <!-- Using i here -->
+  </div>
+  </div>
+<% }); %>
+<% } %>
+    <% } %>
+
+ 
+    <div class="div5">
+      <footer class="site-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 CryptoTrends. All rights reserved.</p>
+    <p>Made with ❤️ by Drishti Gautam</p>
+  </div>
+</footer>
+
+    </div>
+</div>
+   
+</body>
+</html>
